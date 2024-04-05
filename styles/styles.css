@@ -38,6 +38,10 @@ img{
     width: 2rem;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* secao de tarefa em andamento */
 .app__andamento-container{
     display: flex;
