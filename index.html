@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="imagex/png" href="/styles/imagens/lista.png">
     <script src="temporizador.js" defer></script>
+    <script src="scripts-crud.js" defer></script>
     <link rel="stylesheet" href="./styles/styles.css">
     <title>To-Do</title>
 </head>
@@ -29,9 +30,26 @@
                 <button class="lista-de-tarefas-add-button"><img src="/styles/imagens/add-button.png" alt=""></button>
                 <button class="lista-de-tarefas-edit-button"><img src="/styles/imagens/edit-button.png" alt=""></button>
             </div>
-            <div class="tarefa"><img class="tarefa-check" src="/styles/imagens/check-icon.png" alt=""><p class="nome_tarefa">Nome da tarefa</p><button ></button></div>
-            <div class="tarefa"><img class="tarefa-check" src="/styles/imagens/check-icon.png" alt=""><p class="nome_tarefa">Nome da tarefa</p><button ></button></div>
-            <div class="tarefa"><img class="tarefa-check" src="/styles/imagens/check-icon.png" alt=""><p class="nome_tarefa">Nome da tarefa</p><button ></button></div>
+            <ul class="lista-de-tarefas">
+                <li> <img src="styles/imagens/check-icon.png" alt="" class="tarefa-icone">a</li>
+            </ul>
+            
+            <form class="form-adicionar-tarefa" aria-hidden="true">
+                <div class="form-field">
+                    <label class="form-label">
+                        Adicionando tarefa:
+                    </label>
+                    <textarea required rows="4" class="form-textarea" placeholder="no que você está trabalhando..."></textarea>
+                </div>
+                <footer class="form-footer">
+                    <button type="button" class="form-footer__button  form-footer__button--cancelar">
+                        <img src="styles/imagens/cancel-icon.svg" class="form-footer__button-img" alt="">Cancelar
+                    </button>
+                    <button type="button" class="form-footer__button  form-footer__button--salvar">
+                        <img src="styles/imagens/save-icon.svg" class="form-footer__button-img" alt="">Salvar
+                    </button>
+                </footer>
+            </form>
         </section>
     </main>
 </body>
