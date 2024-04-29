@@ -98,12 +98,25 @@ button {
     padding: 0.5rem 1.2rem;
     gap: 0.8rem;
 }
-.tarefa-icone{
+.tarefa-icone--check{
     width: 1.2rem;
     border: 2px solid black;
     border-radius: 15px;
     
 }
+
+.tarefa-icone--bin{
+    width: 1.6rem;
+    
+}
+.tarefa-excluir{
+    position: relative;
+    left: 575px;
+    background-color: transparent;
+    
+}
+
+
 .lista-de-tarefas-editar {
     display: flex;
     justify-content: space-between;
