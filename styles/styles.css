@@ -91,7 +91,7 @@ button {
 .lista-de-tarefas li{
     display: flex;
     align-items: center;
-    text-align: center;
+    text-align: left;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
     margin-bottom: 0.4rem;
@@ -105,14 +105,21 @@ button {
     
 }
 
+.tarefa-descricao{
+    width: 90%;
+    height: 30px;
+    
+}
+
 .tarefa-icone--bin{
     width: 1.6rem;
     
 }
 .tarefa-excluir{
     position: relative;
-    left: 575px;
     background-color: transparent;
+    width: 1.6rem;
+    margin: 0;
     
 }
 
@@ -138,6 +145,7 @@ button {
     text-align: left;
 
 }
+
 
 .hidden{
     display: none;

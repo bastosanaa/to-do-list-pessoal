@@ -5,7 +5,7 @@ const salvarAddTarefa = document.querySelector('.form-footer__button--salvar')
 const formTextArea = document.querySelector('.form-textarea')
 const listaDeTarefas = document.querySelector('.lista-de-tarefas')
 const editarListaBtn = document.querySelector('.lista-de-tarefas-edit-button')
-const excluirTarefaBtns = document.querySelectorAll('.tarefa-excluir')
+
 
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
@@ -21,6 +21,14 @@ function carregarTarefas() {
     });
 }
 
+editarListaBtn.addEventListener('click', () => {
+    const excluirTarefaBtns = document.querySelectorAll('.tarefa-excluir')
+    excluirTarefaBtns.forEach(btn => {
+            btn.classList.toggle('hidden')
+        })
+    
+    })
+
 adicionarTarefaBtn.addEventListener('click', () => {
     formAddTarefa.classList.toggle('hidden')
 })
@@ -28,13 +36,6 @@ adicionarTarefaBtn.addEventListener('click', () => {
 cancelarAddTarefa.addEventListener('click', fecharForm)
 
 //em criacao...
-editarListaBtn.addEventListener('click', () => {
-    console.log(excluirTarefaBtns[0])
-    excluirTarefaBtns.forEach(btn => {
-        btn.classList.toggle('hidden')
-    })
-
-})
 
 function fecharForm(){
     formTextArea.value = ''
@@ -75,9 +76,9 @@ function addTarefa(tarefa) {
     
 
     excluirBtn.appendChild(binImg)
-    li.appendChild(excluirBtn)
     li.appendChild(checkImg)
     li.appendChild(descricaoTarefa)
+    li.appendChild(excluirBtn)
 
     listaDeTarefas.appendChild(li)
 
@@ -85,5 +86,6 @@ function addTarefa(tarefa) {
     atualizarTarefas()
     fecharForm()
 }
+
 
 carregarTarefas()
