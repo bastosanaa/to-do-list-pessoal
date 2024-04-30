@@ -6,7 +6,6 @@ const formTextArea = document.querySelector('.form-textarea')
 const listaDeTarefas = document.querySelector('.lista-de-tarefas')
 const editarListaBtn = document.querySelector('.lista-de-tarefas-edit-button')
 
-
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function atualizarTarefas() {
@@ -21,13 +20,33 @@ function carregarTarefas() {
     });
 }
 
+
+//implementando...
+function apagarTarefa(tarefa){
+    const descricaoItemLista = tarefa.querySelector('.tarefa-descricao')
+    tarefa.remove()
+    tarefas = tarefas.filter(item => item.descricao != descricaoItemLista.textContent);
+    atualizarTarefas()
+}
+function fecharForm(){
+    formTextArea.value = ''
+    formAddTarefa.classList.add('hidden')
+}
+
 editarListaBtn.addEventListener('click', () => {
     const excluirTarefaBtns = document.querySelectorAll('.tarefa-excluir')
     excluirTarefaBtns.forEach(btn => {
             btn.classList.toggle('hidden')
+            btn.addEventListener('click', () => {
+                const tarefa = btn.parentElement;
+                apagarTarefa(tarefa)
+            })
         })
-    
-    })
+})
+
+
+
+
 
 adicionarTarefaBtn.addEventListener('click', () => {
     formAddTarefa.classList.toggle('hidden')
@@ -35,12 +54,7 @@ adicionarTarefaBtn.addEventListener('click', () => {
 
 cancelarAddTarefa.addEventListener('click', fecharForm)
 
-//em criacao...
 
-function fecharForm(){
-    formTextArea.value = ''
-    formAddTarefa.classList.add('hidden')
-}
 
 
 salvarAddTarefa.addEventListener('click', () =>{
@@ -65,11 +79,9 @@ function addTarefa(tarefa) {
     descricaoTarefa.classList.add('tarefa-descricao')
     descricaoTarefa.textContent += tarefa.descricao
 
-
-    //em criacao...
     const excluirBtn = document.createElement('button')
     excluirBtn.classList.add('tarefa-excluir')
-    // excluirBtn.classList.add('hidden')
+    excluirBtn.classList.add('hidden')
     const binImg = document.createElement('img')
     binImg.setAttribute('src' , 'styles/imagens/bin-icon.png')
     binImg.classList.add('tarefa-icone--bin')
@@ -86,6 +98,7 @@ function addTarefa(tarefa) {
     atualizarTarefas()
     fecharForm()
 }
+
 
 
 carregarTarefas()
