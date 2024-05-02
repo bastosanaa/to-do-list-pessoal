@@ -5,7 +5,10 @@ const salvarAddTarefa = document.querySelector('.form-footer__button--salvar')
 const formTextArea = document.querySelector('.form-textarea')
 const listaDeTarefas = document.querySelector('.lista-de-tarefas')
 const editarListaBtn = document.querySelector('.lista-de-tarefas-edit-button')
+const tarefaItemAndamento = document.querySelector('.tarefa-andamento-item')
+const finalizarTarefaBtn = document.querySelector('.finalizar-tarefa')
 
+let tarefaSelecionada = null
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function atualizarTarefas() {
@@ -20,14 +23,16 @@ function carregarTarefas() {
     });
 }
 
-
-//implementando...
 function apagarTarefa(tarefa){
     const descricaoItemLista = tarefa.querySelector('.tarefa-descricao')
     tarefa.remove()
     tarefas = tarefas.filter(item => item.descricao != descricaoItemLista.textContent);
     atualizarTarefas()
 }
+
+console.log(listaDeTarefas)
+
+
 function fecharForm(){
     formTextArea.value = ''
     formAddTarefa.classList.add('hidden')
@@ -44,18 +49,16 @@ editarListaBtn.addEventListener('click', () => {
         })
 })
 
-
-
-
-
 adicionarTarefaBtn.addEventListener('click', () => {
     formAddTarefa.classList.toggle('hidden')
+    // fechar modo edição caso esteja adicionando tarefa
+    const excluirTarefaBtns = document.querySelectorAll('.tarefa-excluir')
+    excluirTarefaBtns.forEach(btn => {
+            btn.classList.toggle('hidden')
+    })
 })
 
 cancelarAddTarefa.addEventListener('click', fecharForm)
-
-
-
 
 salvarAddTarefa.addEventListener('click', () =>{
     const tarefa = {
@@ -70,11 +73,12 @@ function addTarefa(tarefa) {
 
     const li = document.createElement('li')
     li.classList.add('item-tarefa')
-
+    
+    
     const checkImg = document.createElement('img')
     checkImg.setAttribute('src' , 'styles/imagens/check-icon.png')
     checkImg.classList.add('tarefa-icone--check')
-
+    
     const descricaoTarefa = document.createElement('p')
     descricaoTarefa.classList.add('tarefa-descricao')
     descricaoTarefa.textContent += tarefa.descricao
@@ -97,8 +101,11 @@ function addTarefa(tarefa) {
     tarefas.push()
     atualizarTarefas()
     fecharForm()
+
+    li.onclick = () => {
+        tarefaSelecionada = tarefa
+        tarefaItemAndamento.textContent = tarefaSelecionada.descricao
+    }
 }
-
-
 
 carregarTarefas()
