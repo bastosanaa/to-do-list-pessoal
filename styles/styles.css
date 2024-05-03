@@ -88,7 +88,7 @@ button {
 
 .completada {
     background-color: var(--primary-green);
-    box-shadow: #000
+    border-color: #294B29;
 }
 
 .app__card-timer{
